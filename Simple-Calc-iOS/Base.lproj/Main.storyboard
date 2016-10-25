@@ -160,16 +160,25 @@
                                 <frame key="frameInset" minX="16" minY="423" width="103" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="avg"/>
+                                <connections>
+                                    <action selector="pressAvg:" destination="BYZ-38-t0r" eventType="touchDown" id="BY2-d2-Xwz"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7B-nw-s9r">
                                 <frame key="frameInset" minX="126" minY="423" width="121" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="count"/>
+                                <connections>
+                                    <action selector="pressCount:" destination="BYZ-38-t0r" eventType="touchDown" id="OV0-gd-lfP"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uiu-Ip-fbx">
                                 <frame key="frameInset" minX="255" minY="423" width="103" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="fact"/>
+                                <connections>
+                                    <action selector="pressFact:" destination="BYZ-38-t0r" eventType="touchDown" id="9yw-AJ-wbC"/>
+                                </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XqQ-WG-jdx">
                                 <frame key="frameInset" minX="16" minY="616" width="51" height="31"/>

@@ -101,6 +101,24 @@ class ViewController: UIViewController {
         numberText.text = ""
     }
     
+    @IBAction func pressAvg(_ sender: AnyObject) {
+        nextOperator = "avg"
+        numbers.append(Double(numberText.text!)!)
+        numberText.text = ""
+    }
+    
+    @IBAction func pressCount(_ sender: AnyObject) {
+        nextOperator = "count"
+        numbers.append(Double(numberText.text!)!)
+        numberText.text = ""
+    }
+    
+    @IBAction func pressFact(_ sender: AnyObject) {
+        nextOperator = "fact"
+        numbers.append(Double(numberText.text!)!)
+        numberText.text = ""
+    }
+    
     @IBAction func pressEquals(_ sender: AnyObject) {
         if (numberText.text == "") {
             numbers.append(0.0)
@@ -145,6 +163,34 @@ class ViewController: UIViewController {
             }
             
             result = numbers[numbers.count - 2] / numbers[numbers.count - 1]
+        }
+        
+        if nextOperator == "avg" {
+            if numbers.count < 1 {
+                return
+            }
+            
+            result = numbers.reduce(0, +) / Double(numbers.count)
+        }
+        
+        if nextOperator == "count" {
+            result = Double(numbers.count)
+        }
+        
+        if nextOperator == "fact" {
+            if numbers.count != 1 && numbers[0] < 1 {
+                return
+            }
+            
+            var multiplier: Int = Int(numbers[0])
+            var total: Int = multiplier
+            
+            while multiplier > 1 {
+                total *= multiplier - 1
+                multiplier -= 1
+            }
+            
+            result = Double(total)
         }
         
         if (result.truncatingRemainder(dividingBy: 1) == 0) {
