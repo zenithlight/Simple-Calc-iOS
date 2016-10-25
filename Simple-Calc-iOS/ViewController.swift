@@ -94,9 +94,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func pressPlus(_ sender: AnyObject) {
-        nextOperator = "+"
-        
+    func update() {
         if reversePolishNotation.isOn {
             pressEquals(self)
         }
@@ -104,78 +102,41 @@ class ViewController: UIViewController {
             numbers.append(Double(numberText.text!)!)
             numberText.text = ""
         }
+    }
+    
+    @IBAction func pressPlus(_ sender: AnyObject) {
+        nextOperator = "+"
+        update()
     }
     
     @IBAction func pressMinus(_ sender: AnyObject) {
         nextOperator = "-"
-
-        if reversePolishNotation.isOn {
-            pressEquals(self)
-        }
-        else {
-            numbers.append(Double(numberText.text!)!)
-            numberText.text = ""
-        }
+        update()
     }
     
     @IBAction func pressTimes(_ sender: AnyObject) {
         nextOperator = "*"
-
-        if reversePolishNotation.isOn {
-            pressEquals(self)
-        }
-        else {
-            numbers.append(Double(numberText.text!)!)
-            numberText.text = ""
-        }
+        update()
     }
     
     @IBAction func pressDivide(_ sender: AnyObject) {
         nextOperator = "/"
-
-        if reversePolishNotation.isOn {
-            pressEquals(self)
-        }
-        else {
-            numbers.append(Double(numberText.text!)!)
-            numberText.text = ""
-        }
+        update()
     }
     
     @IBAction func pressAvg(_ sender: AnyObject) {
         nextOperator = "avg"
-
-        if reversePolishNotation.isOn {
-            pressEquals(self)
-        }
-        else {
-            numbers.append(Double(numberText.text!)!)
-            numberText.text = ""
-        }
+        update()
     }
     
     @IBAction func pressCount(_ sender: AnyObject) {
         nextOperator = "count"
-
-        if reversePolishNotation.isOn {
-            pressEquals(self)
-        }
-        else {
-            numbers.append(Double(numberText.text!)!)
-            numberText.text = ""
-        }
+        update()
     }
     
     @IBAction func pressFact(_ sender: AnyObject) {
         nextOperator = "fact"
-
-        if reversePolishNotation.isOn {
-            pressEquals(self)
-        }
-        else {
-            numbers.append(Double(numberText.text!)!)
-            numberText.text = ""
-        }
+        update()
     }
     
     @IBAction func pressEnter(_ sender: AnyObject) {
@@ -188,10 +149,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func pressEquals(_ sender: AnyObject) {
-        if (numberText.text == "") {
-            numbers.append(0.0)
-        }
-        else {
+        if numberText.text != "" {
             numbers.append(Double(numberText.text!)!)
         }
         
