@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var numberText: UITextField!
+    @IBOutlet weak var reversePolishNotation: UISwitch!
+    @IBOutlet weak var enterButton: UIButton!
     
     var numbers: Array<Double> = []
     var nextOperator: String = ""
@@ -23,6 +25,21 @@ class ViewController: UIViewController {
     }
 
     @IBAction func pressRefresh(_ sender: AnyObject) {
+        refresh()
+    }
+    
+    @IBAction func changeRPN(_ sender: AnyObject) {
+        if reversePolishNotation.isOn {
+            enterButton.isEnabled = true
+        }
+        else {
+            enterButton.isEnabled = false
+        }
+        
+        refresh()
+    }
+    
+    func refresh() {
         numbers = []
         nextOperator = ""
         numberText.text = ""
@@ -79,46 +96,97 @@ class ViewController: UIViewController {
     
     @IBAction func pressPlus(_ sender: AnyObject) {
         nextOperator = "+"
-        numbers.append(Double(numberText.text!)!)
-        numberText.text = ""
+        
+        if reversePolishNotation.isOn {
+            pressEquals(self)
+        }
+        else {
+            numbers.append(Double(numberText.text!)!)
+            numberText.text = ""
+        }
     }
     
     @IBAction func pressMinus(_ sender: AnyObject) {
         nextOperator = "-"
-        numbers.append(Double(numberText.text!)!)
-        numberText.text = ""
+
+        if reversePolishNotation.isOn {
+            pressEquals(self)
+        }
+        else {
+            numbers.append(Double(numberText.text!)!)
+            numberText.text = ""
+        }
     }
     
     @IBAction func pressTimes(_ sender: AnyObject) {
         nextOperator = "*"
-        numbers.append(Double(numberText.text!)!)
-        numberText.text = ""
+
+        if reversePolishNotation.isOn {
+            pressEquals(self)
+        }
+        else {
+            numbers.append(Double(numberText.text!)!)
+            numberText.text = ""
+        }
     }
     
     @IBAction func pressDivide(_ sender: AnyObject) {
         nextOperator = "/"
-        numbers.append(Double(numberText.text!)!)
-        numberText.text = ""
+
+        if reversePolishNotation.isOn {
+            pressEquals(self)
+        }
+        else {
+            numbers.append(Double(numberText.text!)!)
+            numberText.text = ""
+        }
     }
     
     @IBAction func pressAvg(_ sender: AnyObject) {
         nextOperator = "avg"
-        numbers.append(Double(numberText.text!)!)
-        numberText.text = ""
+
+        if reversePolishNotation.isOn {
+            pressEquals(self)
+        }
+        else {
+            numbers.append(Double(numberText.text!)!)
+            numberText.text = ""
+        }
     }
     
     @IBAction func pressCount(_ sender: AnyObject) {
         nextOperator = "count"
-        numbers.append(Double(numberText.text!)!)
-        numberText.text = ""
+
+        if reversePolishNotation.isOn {
+            pressEquals(self)
+        }
+        else {
+            numbers.append(Double(numberText.text!)!)
+            numberText.text = ""
+        }
     }
     
     @IBAction func pressFact(_ sender: AnyObject) {
         nextOperator = "fact"
+
+        if reversePolishNotation.isOn {
+            pressEquals(self)
+        }
+        else {
+            numbers.append(Double(numberText.text!)!)
+            numberText.text = ""
+        }
+    }
+    
+    @IBAction func pressEnter(_ sender: AnyObject) {
+        if !reversePolishNotation.isOn {
+            return
+        }
+        
         numbers.append(Double(numberText.text!)!)
         numberText.text = ""
     }
-    
+
     @IBAction func pressEquals(_ sender: AnyObject) {
         if (numberText.text == "") {
             numbers.append(0.0)
@@ -199,8 +267,6 @@ class ViewController: UIViewController {
         else {
             numberText.text = String(result)
         }
-        
-        numbers = []
     }
 }
 
