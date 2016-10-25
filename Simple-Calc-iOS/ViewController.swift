@@ -22,6 +22,12 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
+    @IBAction func pressRefresh(_ sender: AnyObject) {
+        numbers = []
+        nextOperator = ""
+        numberText.text = ""
+    }
+    
     @IBAction func press1(_ sender: AnyObject) {
         numberText.text! += "1"
     }
@@ -63,7 +69,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func pressDot(_ sender: AnyObject) {
-        numberText.text! += "."
+        if numberText.text == "" {
+            numberText.text = "0."
+        }
+        else {
+            numberText.text! += "."
+        }
     }
     
     @IBAction func pressPlus(_ sender: AnyObject) {
@@ -72,8 +83,31 @@ class ViewController: UIViewController {
         numberText.text = ""
     }
     
-    @IBAction func pressEquals(_ sender: AnyObject) {
+    @IBAction func pressMinus(_ sender: AnyObject) {
+        nextOperator = "-"
         numbers.append(Double(numberText.text!)!)
+        numberText.text = ""
+    }
+    
+    @IBAction func pressTimes(_ sender: AnyObject) {
+        nextOperator = "*"
+        numbers.append(Double(numberText.text!)!)
+        numberText.text = ""
+    }
+    
+    @IBAction func pressDivide(_ sender: AnyObject) {
+        nextOperator = "/"
+        numbers.append(Double(numberText.text!)!)
+        numberText.text = ""
+    }
+    
+    @IBAction func pressEquals(_ sender: AnyObject) {
+        if (numberText.text == "") {
+            numbers.append(0.0)
+        }
+        else {
+            numbers.append(Double(numberText.text!)!)
+        }
         
         var result: Double = 0
         
@@ -86,7 +120,31 @@ class ViewController: UIViewController {
                 return
             }
             
-            result = numbers[numbers.count - 1] + numbers[numbers.count - 2]
+            result = numbers[numbers.count - 2] + numbers[numbers.count - 1]
+        }
+        
+        if nextOperator == "-" {
+            if numbers.count < 2 {
+                return
+            }
+            
+            result = numbers[numbers.count - 2] - numbers[numbers.count - 1]
+        }
+        
+        if nextOperator == "*" {
+            if numbers.count < 2 {
+                return
+            }
+            
+            result = numbers[numbers.count - 2] * numbers[numbers.count - 1]
+        }
+        
+        if nextOperator == "/" {
+            if numbers.count < 2 {
+                return
+            }
+            
+            result = numbers[numbers.count - 2] / numbers[numbers.count - 1]
         }
         
         if (result.truncatingRemainder(dividingBy: 1) == 0) {
